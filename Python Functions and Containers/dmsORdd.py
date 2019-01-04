@@ -7,16 +7,18 @@
 import math
 # Define function dms2dd that performs necessary calculations to convert DMS to DD.
 def dms2dd((degrees, minutes, seconds)):
-    # assign values to variables
-    degrees = number_dmsORdd[0]
-    minutes = number_dmsORdd[1]
-    seconds = number_dmsORdd[2]
-    # If loop ensures that negative and positive input values of DMS are calculated appropriately.
+    # assign a tuple to variable dms
+    dms = (degrees, minutes, seconds)
+    # assign tuple item values to variables
+    degrees = float(dms[0]) # index 0, first item
+    minutes = float(dms[1]) # index 1, second item
+    seconds = float(dms[2]) # index 2, third item
+    # If block ensures that negative and positive input values of DMS are calculated appropriately.
     if degrees >0:
         DD = degrees+minutes/60+seconds/3600
     else:
         DD = degrees-minutes/60-seconds/3600
-    print "Its DD form is",round(DD,4),"." # print message to the screen
+    print "Its DD form is",round(DD,4),"." # print message to the screen including the value of DD.
 # Define function dms2dd that performs necessary calculations to convert DD to DMS.
 def dd2dms(degrees):
     D = int(degrees) # calculate degrees value using int function
@@ -27,7 +29,7 @@ def dd2dms(degrees):
     # calculations for seconds:
     SM = MS - M
     S = int(SM*60) # calculate final seconds value using int function
-    # If loop ensures that negative input values of DD are calculated appropriately.
+    # If block ensures that negative input values of DD are calculated appropriately.
     if degrees < 0:
         M = M *(-1)
         S = S *(-1)
@@ -35,12 +37,13 @@ def dd2dms(degrees):
 
 # Assign raw_input function to variable dmsORdd, collect user input as a string value.
 dmsORdd = raw_input("Please enter a latitude or longitute value in DMS or DD format. >")
+# Incorrect input values could be trapped here.
 # Split function creates a list from user input values.
 dmsORdd.split()
 # Convert each item in the list to float type, 
 # assign the list to the variable number_dmsORdd.
 number_dmsORdd = [float(i) for i in dmsORdd.split(',')]
-# If loop determines if the user input is DD or DMS
+# If block determines if the user input is DD or DMS
 # and directs to the appropriate function for conversion.
 if number_dmsORdd == number_dmsORdd[:1]: # if one item in the list
     number_dmsORdd = float (number_dmsORdd[0])
